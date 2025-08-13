@@ -1,6 +1,6 @@
 # 🛰️ DIY Satellite Tracker (ESP8266 + 16x2 LCD + Web Interface)
 
-A Wi-Fi-powered real-time satellite tracker built using **ESP8266 NodeMCU**, a **16x2 LCD (non-I2C)** display, and the **N2YO Satellite Tracking API**.
+A Wi-Fi-powered real-time satellite tracker built using **ESP8266 NodeMCU**, a **16x2 LCD (I2C)** display, and the **N2YO Satellite Tracking API**.
 
 It shows satellite information on an LCD and serves a stylish live-tracking web page. Designed to be beginner-friendly — no servo motors, no external databases, just real-time data!
 
@@ -8,34 +8,24 @@ It shows satellite information on an LCD and serves a stylish live-tracking web 
 
 ## 🧰 Hardware Required
 
-| Component                  | Quantity |
+| Component                 | Quantity |
 |---------------------------|----------|
 | ESP8266 NodeMCU (ESP-12E) | 1        |
-| 16x2 LCD (No I2C)         | 1        |
-| 10k Potentiometer         | 1        |
+| 16x2 LCD(I2C)             | 1        |
 | Breadboard + Jumper Wires | Several  |
 | Micro USB Cable           | 1        |
-| Internet Connection       | ✅        |
+| Internet Connection       | ✅       |
 
 ---
 
 ## 🔌 Wiring Diagram
 
-| LCD Pin | Connects To (ESP8266 GPIO) |
-|---------|----------------------------|
-| RS      | D2                         |
-| E       | D1                         |
-| D4      | D6                         |
-| D5      | D7                         |
-| D6      | D5                         |
-| D7      | D4                         |
-| VSS     | GND                        |
-| VDD     | 3.3V                       |
-| V0      | Middle pin of 10k pot      |
-| RW      | GND                        |
-| A (LED) | 3.3V (via 220Ω resistor)   |
-| K (LED) | GND                        |
-
+| LCD(I2C) Pin | Connects To (ESP8266 GPIO) |
+|--------------|----------------------------|
+| GND          | GND                        |
+| VCC          | 5V(external not from esp)  |
+| SDA          | D2(GPIO4)                  |
+| SCL          | D1(GPIO5)                  |
 ---
 
 ## 🔧 Software Setup
@@ -74,7 +64,7 @@ Go to `Sketch → Include Library → Manage Libraries`, and install:
 ## 🌐 How to Use
 
 1. After uploading, open **Serial Monitor** at `115200 baud`
-2. Note the IP address (e.g., `192.168.1.100`)
+2. Note the IP address from your router settings (e.g., `192.168.1.100`)
 3. Open a browser and go to `http://<your_esp_ip>`
 4. Enter a satellite NORAD ID (e.g., `25544` for ISS)
 5. See live satellite info and its movement — auto-refreshes every 10s
