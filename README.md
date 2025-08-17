@@ -109,11 +109,6 @@ Save last satellite ID in EEPROM
 
 ---
 
-## 📸 Screenshots
-
-
----
-
 ## 🧪 Tested With
 
 NodeMCU ESP-12E
